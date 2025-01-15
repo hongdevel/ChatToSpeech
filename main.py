@@ -9,7 +9,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
-print(DISCORD_TOKEN)
 
 async def play_audio(voice_client, content, file_name):
     if voice_client.is_playing():
@@ -33,7 +32,9 @@ class SoundBoardView(View):
         else:
             await interaction.response.send_message("봇이 음성 채널에 연결되어 있지 않습니다.", ephemeral=True)
 
-intents = discord.Intents.all()
+intents = discord.Intents.default()  # 기본적인 intents만 활성화
+intents.message_content = True  # 메시지 내용 읽기
+intents.voice_states = True  # 음성 상태 추적
 
 class MyClient(discord.Client):
     def __init__(self):
