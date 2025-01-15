@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
+print(DISCORD_TOKEN)
 
 async def play_audio(voice_client, content, file_name):
     if voice_client.is_playing():
